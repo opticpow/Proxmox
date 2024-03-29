@@ -507,7 +507,7 @@ start() {
 
 # This function collects user settings and integrates all the collected information.
 build_container() {
-if [ "$VERB" == "yes" ]; then set -x; fi
+#  if [ "$VERB" == "yes" ]; then set -x; fi
 
   if [ "$CT_TYPE" == "1" ]; then
     FEATURES="keyctl=1,nesting=1"
@@ -550,6 +550,8 @@ if [ "$VERB" == "yes" ]; then set -x; fi
     -unprivileged $CT_TYPE
     $PW
   "
+  echo "PCT_OPTIONS: $PCT_OPTIONS"
+  
   # This executes create_lxc.sh and creates the container and .conf file
   bash -c "$(wget -qLO - https://raw.githubusercontent.com/opticpow/Proxmox/main/ct/create_lxc.sh)" || exit
 
