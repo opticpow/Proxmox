@@ -541,17 +541,16 @@ build_container() {
     -features $FEATURES
     -hostname $HN
     -tags proxmox-helper-scripts
-    $SD
-    $NS
-    -net0 name=eth0,bridge=$BRG$MAC,ip=$NET$GATE$VLAN$MTU
+    -searchdomain=$SD
+    -nameserver=$NS
+    -net0 name=eth0,bridge=$BRG$MAC,ip=$NET,gw=$GATE,tag=$VLAN$MTU
     -onboot 1
     -cores $CORE_COUNT
     -memory $RAM_SIZE
     -unprivileged $CT_TYPE
     $PW
   "
-  echo "PCT_OPTIONS: $PCT_OPTIONS"
-  
+
   # This executes create_lxc.sh and creates the container and .conf file
   bash -c "$(wget -qLO - https://raw.githubusercontent.com/opticpow/Proxmox/main/ct/create_lxc.sh)" || exit
 
