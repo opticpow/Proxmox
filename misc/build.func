@@ -548,7 +548,7 @@ build_container() {
     -cores $CORE_COUNT
     -memory $RAM_SIZE
     -unprivileged $CT_TYPE
-    $PW
+    -paswword $PW
   "
 
   # This executes create_lxc.sh and creates the container and .conf file
